@@ -1,4 +1,4 @@
-# Shelf-EZ
+# ShelfWise
 
 ## MVPS (in order of completion)
 1. User Auth CRUD
