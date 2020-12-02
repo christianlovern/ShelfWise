@@ -12,13 +12,13 @@
 2. Filter search based on different terms (artist, catagory, favorited, etc...) 
 3. create "lists" to share with others in link form 
 4. add friends to be able to co-edit bookshelves
-4. add collections
+5. add collections
 
 ---
 
 ## Database Design
 
-![alt text](Database-Schema.png "Database")
+![alt text](Database.png "Database")
 ---
 
 ## Wireframes
