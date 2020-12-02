@@ -50,12 +50,12 @@
 #### Bookshelf
 | Route                          | Methods                 | Purpose |
 | ------------------------------ | ------------------------| ------- |
-| /api/bookshelf/create          | POST                    | Bookshelf creation |
+| /api/bookshelf                 | POST                    | Bookshelf creation |
 | /api/bookshelf/:id             | GET, PUT, DELETE        | Get, edit, or delete Bookshelf information |
-| /api/bookshelf/shelf/create    | POST                    | Shelf creation |
-| /api/bookshelf/shelf/:id       | GET                     | Get, edit, or delete Shelf information |
-| /api/bookshelf/shelf/item/create| POST                    | Item creation |
-| /api/bookshelf/shelf/item/:id  | GET, PUT, DELETE        | Get, edit, or delete Item information |
+| /api/bookshelf/:bookshelfId/shelf           | POST                    | Shelf creation |
+| /api/bookshelf/:bookshelfId/shelf/:id       | GET                     | Get, edit, or delete Shelf information |
+| /api/bookshelf/:bookshelfId/shelf/:shelfId/item      | POST                    | Item creation |
+| /api/bookshelf/:bookshelfId/shelf/:shelfId/item/:id  | GET, PUT, DELETE        | Get, edit, or delete Item information |
 ---
 
 ---
@@ -67,8 +67,8 @@
 | /login                         | POST                    | Login Functionality|
 | /register                      | POST                    | Registration functionality|
 | /user/:bookshelf               | GET                     | View bookshelf page|
-| /user/:bookshelf/shelf/:shelfId| GET                     | View shelf page    |
-| /user/:bookshelf/shelf/:shelfId/:itemId| GET             | View item page     |
+| /user/:bookshelf/:bookshelfId/shelf/:shelfId| GET                     | View shelf page    |
+| /user/:bookshelf/:bookshelfId/shelf/:shelfId/:itemId| GET             | View item page     |
 | /bookshelf/create              | POST                    | Create new bookshelf|
 | /shelf/create                  | POST                    | Create new shelf   |
 | /item/create                   | POST                    | Create new item    |
