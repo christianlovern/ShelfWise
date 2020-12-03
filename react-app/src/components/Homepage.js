@@ -1,21 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import SideBar from './SideBar';
 import BookshelfForm from "./BookshelfForm"
+import reducer from "../services/bookshelf_reducer"
 
 const Homepage = ({ user }) => {
-    console.log(user);
     const [hidden, setHidden] = useState(true)
     const [bookcases, setBookcases] = useState([]);
+    const [state, dispatch] = useReducer(reducer, [])
 
     useEffect(() => {
         const fetchCases = async () => {
             const caseResponse = await fetch(`/api/users/${user.id}/bookshelves`)
             const bookcases = await caseResponse.json();
-            console.log("In fetch", bookcases.bookshelf_list)
             let list = bookcases.bookshelf_list
-            setBookcases(list)
+            if(list){
+                console.log("Here");
+                dispatch({type: 'GET_BOOKSHELF', item: list})
+            }
         }
         fetchCases();
     }, [])
@@ -23,7 +26,7 @@ const Homepage = ({ user }) => {
     const ShowForm = () => {
         if (!hidden){
             return(
-                <BookshelfForm />
+                <BookshelfForm state = {state} reducer = {reducer} dispatch = {dispatch}/>
             )
         } else{
             return null;
@@ -32,7 +35,7 @@ const Homepage = ({ user }) => {
 
   return (
     <div className="main__container">
-      <SideBar bookcases = {bookcases} hidden={hidden} setHidden= {setHidden} />
+      <SideBar bookcases = {state} hidden={hidden} setHidden= {setHidden} />
       <h1 className="homepage__header">Welcome {user.firstname}!</h1>
       <ShowForm />
       <div className="homepage__checked-out-container">

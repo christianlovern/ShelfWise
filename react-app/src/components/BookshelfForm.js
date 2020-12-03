@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 import { Redirect } from 'react-router-dom';
 import { createBookshelf } from '../services/bookshelf';
+import reducer from "../services/bookshelf_reducer"
 
-
-const BookshelfForm = () => {
+const BookshelfForm = (props) => {
     const [name, setName] = useState('');
     const [about, setAbout] = useState('');
+
 
     const updateValue = (setFunc) => (e) => {
         setFunc(e.target.value)
@@ -14,8 +15,11 @@ const BookshelfForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const bookshelf = await createBookshelf(name, about);
-        console.log(bookshelf);
-        return <Redirect to='/' />
+        if(bookshelf){
+            console.log("form dispatch");
+            props.dispatch({type: 'SUBMIT_BOOKSHELF', item: bookshelf})
+        }
+        
         
     }
 
