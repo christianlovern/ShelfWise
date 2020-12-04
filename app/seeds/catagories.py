@@ -1,11 +1,11 @@
 from app.models import db, Catagory
 
 # Adds a demo user, you can add other users here if you want
-def seed_catagories(type_list):
+def seed_catagories(type_list, user_list):
     catagory_list = [
-        Catagory(typeId=type_list[0].id, name="Fiction"),
-        Catagory(typeId=type_list[1].id, name="Sci-Fi"),
-        Catagory(typeId=type_list[2].id, name="Alternative")
+        Catagory(owner=user_list[0].id , typeId=type_list[0].id, name="Fiction"),
+        Catagory(owner=user_list[0].id ,typeId=type_list[1].id, name="Sci-Fi"),
+        Catagory(owner=user_list[0].id ,typeId=type_list[2].id, name="Alternative")
     ]
     
 

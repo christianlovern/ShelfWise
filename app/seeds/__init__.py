@@ -16,7 +16,7 @@ def seed():
     users = seed_users()
     bookshelves = seed_bookshelves(users)
     types = seed_types(users)
-    catagories = seed_catagories(types)
+    catagories = seed_catagories(types, users)
     shelves = seed_shelves(bookshelves)
     items = seed_items(shelves, types, catagories)
     # Add other seed functions here

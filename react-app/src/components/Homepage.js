@@ -2,13 +2,18 @@ import React, { useState, useEffect, useReducer } from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import SideBar from './SideBar';
-import BookshelfForm from "./BookshelfForm"
-import reducer from "../services/bookshelf_reducer"
+import CheckedBox from './Checked'
+import BookshelfForm from "./forms/BookshelfForm"
+import bookshelfReducer from "../services/reducers/bookshelf_reducer"
+import InviteBox from "./InviteBox"
+import SearchBox from './SearchBox'
+import ItemForm from "./forms/ItemForm"
 
 const Homepage = ({ user }) => {
     const [hidden, setHidden] = useState(true)
     const [bookcases, setBookcases] = useState([]);
-    const [state, dispatch] = useReducer(reducer, [])
+    const [checkedOut, setCheckedOut] = useState([]);
+    const [state, dispatch] = useReducer(bookshelfReducer, [])
 
     useEffect(() => {
         const fetchCases = async () => {
@@ -20,13 +25,22 @@ const Homepage = ({ user }) => {
                 dispatch({type: 'GET_BOOKSHELF', item: list})
             }
         }
+
+        const fetchChecked = async () => {
+            const fetchResponse = await fetch(`/api/items/checked`)
+            const response = await fetchResponse.json();
+            console.log(response.items);
+            setCheckedOut(response.items)
+        }
+
+        fetchChecked();
         fetchCases();
     }, [])
 
     const ShowForm = () => {
         if (!hidden){
             return(
-                <BookshelfForm state = {state} reducer = {reducer} dispatch = {dispatch}/>
+                <BookshelfForm state = {state} reducer = {bookshelfReducer} dispatch = {dispatch}/>
             )
         } else{
             return null;
@@ -38,9 +52,10 @@ const Homepage = ({ user }) => {
       <SideBar bookcases = {state} hidden={hidden} setHidden= {setHidden} />
       <h1 className="homepage__header">Welcome {user.firstname}!</h1>
       <ShowForm />
-      <div className="homepage__checked-out-container">
-          <h2 className="homepage__checked-out-container-title">Currently checked out items</h2>
-      </div>
+      <ItemForm user={user} state = {state} dispatch = {dispatch} />
+      <CheckedBox checkedOut = {checkedOut}/>
+      <SearchBox />
+      <InviteBox />
     </div>
   );
 }
