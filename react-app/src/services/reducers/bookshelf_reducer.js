@@ -1,6 +1,6 @@
-function reducer(state, action) {
+function bookshelfReducer(state, action) {
     let { type, item } = action;
-    let bookshelves = [...state]
+    let bookshelves = [state]
     if (type === "GET_BOOKSHELF") {
         let bookshelves = item
         return bookshelves
@@ -14,4 +14,4 @@ function reducer(state, action) {
     return state;
 }
 
-export default reducer;
+export default bookshelfReducer;

@@ -132,19 +132,18 @@ margin: 10px;
 }
 
 .homepage__checked-out-container{
-    grid-column-start: 2;
-    grid-row-start: 2;
+    grid-column-start: 3;
+    grid-row-start: 3;
     grid-row-end: 3;
     background-color: #ffe3c8;
-    justify-self: center;
-    width: 70%;
-    height: 500px;
+    width: 90%;
+    height: 80%;
     border: 2px solid #0f4970;
+
 }
 
 .homepage__checked-out-container-title{
     text-align: center;
-
 }
 
 .homepage__header{
@@ -156,4 +155,104 @@ margin: 10px;
     text-align: center;
 }
 
-  
+.homepage-checked-out__list{
+    margin-bottom: 10px;
+}
+.homepage__checked-out-link{
+    color: black;
+    font-size: large;
+    text-decoration: none;
+}
+
+.check-in__btn{
+    float: right;
+    margin-right: 25px;
+}
+
+.homepage__invite-container{
+    background-color: #ffe3c8;
+    border: 2px solid #0f4970;
+    grid-row-start: 4;
+    grid-row-end: 4;
+    grid-column-start: 2;
+    grid-column-end: 4;
+    width: 87.8%;
+    justify-self: center;
+}
+
+.homepage__invite-container-title{
+    text-align: center;
+}
+
+.homepage__invite-container-label{
+    margin-right: 25px;
+}
+
+.homepage__invite-container-input{
+    width: 50%;
+}
+
+.homepage__invite-container-link{
+    text-align: center;
+}
+
+.homepage__search-container{
+    background-color: #ffe3c8;
+    width: 90%;
+    height: 80%;
+    border: 2px solid #0f4970;
+    grid-column-start: 3;
+    grid-row-start: 2;
+    grid-row-end: 2;
+}
+
+.homepage__search-container-title{
+    text-align: center;
+}
+
+.homepage__search-container-input{
+    position: relative;
+    text-align: center;
+    width: 80%;
+    font-size: x-large;
+    margin-left: 10%;
+    margin-top: 2%;
+}
+
+.homepage__search-container-button-container{
+    text-align: center;
+    margin-top: 5%;
+}
+
+.homepage__search-container-button{
+    width: 15%
+}
+
+.item__form__container{
+    grid-column-start: 3;
+    grid-row-start: 3;
+    grid-row-end: 3;
+    background-color: #ffe3c8;
+    margin: 0 auto;
+    width: 70%;
+    height: 500px;
+    border: 2px solid #0f4970;
+}
+
+.item__form__label{
+    margin:5%;
+}
+
+.item__form__input{
+    margin-bottom: 10px;
+}
+
+.create__item{
+    text-align: center;
+    margin-top: 10%;
+}
+
+.item__form-header{
+    text-align: center;
+    margin-bottom: 15%;
+}

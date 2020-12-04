@@ -12,3 +12,11 @@ class Shelf(db.Model):
 
   bookshelves = db.relationship("Bookshelf", back_populates='shelves')
   items = db.relationship("Item", back_populates='shelves')
+
+
+  
+  def to_simple_dict(self):
+    return {
+      "id":self.id,
+      "bookshelfId":self.bookshelfId
+    }

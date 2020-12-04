@@ -20,3 +20,15 @@ class Item(db.Model):
   types = db.relationship("Type", back_populates='items')
   shelves = db.relationship("Shelf", back_populates='items')
   catagories = db.relationship("Catagory", back_populates='items')
+
+
+  def to_dict(self):
+    return {
+      "id":self.id,
+      "name": self.name,
+      "shelfId":self.shelfId,
+      "position":self.position,
+      "typeId":self.typeId,
+      "catagoryId":self.catagoryId,
+      "checked_out":self.checked_out
+    }

@@ -10,6 +10,11 @@ import { authenticate } from "./services/auth";
 import SideBar from "./components/SideBar";
 import Homepage from "./components/Homepage";
 
+
+// function Layout(props) {
+//   return <div id="layout">{props.children}</div>;
+// }
+
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -32,6 +37,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      {/* <Layout> */}
       <NavBar setAuthenticated={setAuthenticated} />
       <Route path="/login" exact={true}>
         <LoginForm
@@ -51,6 +57,7 @@ function App() {
       <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
         <Homepage user = {user}/>
       </ProtectedRoute>
+      {/* </Layout> */}
     </BrowserRouter>
   );
 }

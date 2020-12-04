@@ -14,3 +14,11 @@ class Type(db.Model):
   users = db.relationship("User", back_populates='types')
   catagories = db.relationship("Catagory", back_populates="types")
   items = db.relationship("Item", back_populates="types")
+
+
+  def to_simple_dict(self):
+    return {
+      "id":self.id,
+      "name": self.name,
+      "owner":self.owner,
+    }

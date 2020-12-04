@@ -9,7 +9,7 @@ def seed_items(shelf_list, type_list, catagory_list):
         ),
         Item(typeId=type_list[0].id, catagoryId=catagory_list[0].id, shelfId=shelf_list[0].id,
             name="The Vanishing Half", description="Author: Brit Bennett, A coming-of-age story",
-            position="2", favorite=False, checked_out=False
+            position="2", favorite=False, checked_out=True
         ),
         Item(typeId=type_list[0].id, catagoryId=catagory_list[0].id, shelfId=shelf_list[0].id,
             name="The Glass Hotel", description="Author: Emily St. John Mandel, It follows the aftermath of a disturbing graffiti incident at a hotel on Vancouver Island and the collapse of an international Ponzi scheme",
@@ -33,7 +33,7 @@ def seed_items(shelf_list, type_list, catagory_list):
         ),
         Item(typeId=type_list[1].id, catagoryId=catagory_list[1].id, shelfId=shelf_list[1].id,
             name="MULAN", description="Director: Niki Caro, When the Emperor of China issues a decree that one man per family must serve in the Imperial Army",
-            position="3", favorite=False, checked_out=False
+            position="3", favorite=False, checked_out=True
         ),
         Item(typeId=type_list[1].id, catagoryId=catagory_list[1].id, shelfId=shelf_list[1].id,
             name="THE OTHER LAMB", description="Director: Malgorzata Szumowska, For her entire life, the cult she was born into has been all that teenage Selah has known",
@@ -49,7 +49,7 @@ def seed_items(shelf_list, type_list, catagory_list):
         ),
         Item(typeId=type_list[2].id, catagoryId=catagory_list[2].id, shelfId=shelf_list[2].id,
             name="Fetch The Bolt Cutters", description="Artist: Fiona Apple",
-            position="2", favorite=False, checked_out=False
+            position="2", favorite=False, checked_out=True
         ),
         Item(typeId=type_list[2].id, catagoryId=catagory_list[2].id, shelfId=shelf_list[2].id,
             name="Miss Colombia", description="Artist: Lido Pimienta",

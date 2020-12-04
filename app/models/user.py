@@ -13,6 +13,7 @@ class User(db.Model, UserMixin):
   hashed_password = db.Column(db.String(255), nullable = False)
   bookshelves = db.relationship('Bookshelf', back_populates='users')
   types = db.relationship("Type", back_populates='users')
+  catagories = db.relationship("Catagory", back_populates='users')
 
   @property
   def password(self):

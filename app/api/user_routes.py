@@ -25,3 +25,18 @@ def user_bookshelves(id):
     bookshelves = Bookshelf.query.filter(Bookshelf.owner == id).all()
     bookshelf_list = [bookshelf.to_simple_dict() for (bookshelf) in bookshelves]
     return {'bookshelf_list': bookshelf_list}
+
+@user_routes.route('/<int:id>/types')
+@login_required
+def user_types(id):
+    types = Type.query.filter(Type.owner == id).all()
+    type_list = [type.to_simple_dict() for type in types]
+    return {'type_list': type_list}
+
+@user_routes.route('/<int:id>/catagories')
+@login_required
+def user_catagories(id):
+    catagories = Catagory.query.filter(Catagory.owner == id).all()
+    catagory_list = [catagory.to_simple_dict() for catagory in catagories]
+    return {'catagory_list': catagory_list}
+
