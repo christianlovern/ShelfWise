@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, NavLink } from "react-router-dom";
 import { login } from "../../services/auth";
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {
@@ -57,6 +57,9 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
         />
         <button type="submit">Login</button>
       </div>
+      <NavLink to="/sign-up" exact={true} activeClassName="active">
+        Sign Up
+      </NavLink>
     </form>
   );
 };

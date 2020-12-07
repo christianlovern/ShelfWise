@@ -40,7 +40,9 @@ const Homepage = ({ user }) => {
     const ShowForm = () => {
         if (!hidden){
             return(
-                <BookshelfForm state = {state} reducer = {bookshelfReducer} dispatch = {dispatch}/>
+                <div className="bookshelf__form-modal">
+                    <BookshelfForm hidden={hidden} setHidden={setHidden} state = {state} reducer = {bookshelfReducer} dispatch = {dispatch}/>
+                </div>
             )
         } else{
             return null;

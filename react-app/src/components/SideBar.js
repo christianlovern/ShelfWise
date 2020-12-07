@@ -6,7 +6,7 @@ const SideBar = ({ bookcases, hidden ,setHidden }) => {
   const bookcaseList = bookcases.map((cases) => {
         return (
             <li className="sidebar__bookshelf-bullet" key = {cases.id}>
-                <NavLink className="sidebar__bookshelf-link" to={`/user/${cases.id}`}>{cases.name}</NavLink>
+                <NavLink className="sidebar__bookshelf-link" to={`/bookshelf/${cases.id}`}>{cases.name}</NavLink>
             </li>
         )
     })

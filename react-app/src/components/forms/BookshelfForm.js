@@ -26,8 +26,8 @@ const BookshelfForm = (props) => {
 
     return (
         <div>
-        <h1 className="bookshelf__form-header">Create a Bookshelf</h1>
         <div className='bookshelf__form__container'>
+        <h1 className="bookshelf__form-header">Create a Bookshelf</h1>
             <form onSubmit={handleSubmit}>
 
             <div>
@@ -56,6 +56,7 @@ const BookshelfForm = (props) => {
             <div>
             <div className="create__bookshelf">
                 <button type='submit'>Create</button>
+                <button onClick={() => props.setHidden(!props.hidden)}>Close</button>
             </div>
             </div>
             </form>
