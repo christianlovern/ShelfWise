@@ -1,13 +1,14 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { logout } from "../../services/auth";
 
-const LogoutButton = ({setAuthenticated}) => {
+const LogoutButton = ({ setAuthenticated }) => {
   const onLogout = async (e) => {
     await logout();
     setAuthenticated(false);
   };
 
-  return <button onClick={onLogout}>Logout</button>;
+  return <NavLink to= '/login' onClick={onLogout}>Logout</NavLink>;
 };
 
 export default LogoutButton;

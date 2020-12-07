@@ -36,7 +36,8 @@ def user_types(id):
 @user_routes.route('/<int:id>/catagories')
 @login_required
 def user_catagories(id):
-    catagories = Catagory.query.filter(Catagory.owner == id).all()
+    types = Type.query.filter(Type.id == id).first()
+    catagories = Catagory.query.filter(Catagory.typeId == types.id).all()
     catagory_list = [catagory.to_simple_dict() for catagory in catagories]
     return {'catagory_list': catagory_list}
 

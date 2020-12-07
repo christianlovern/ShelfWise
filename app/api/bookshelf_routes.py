@@ -28,11 +28,11 @@ def create_bookshelf():
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@bookshelf_routes.route('/:name/shelves')
+@bookshelf_routes.route('/<string:name>/shelves')
 @login_required
 def get_shelves(name):
     bookeshelf= Bookshelf.query.filter(Bookshelf.name == name).first()
     shelves = Shelf.query.filter(bookeshelf.id == Shelf.bookshelfId).all()
-    shelves_list = {shelf.to_simple_dict() for shelf in shelves}
+    shelves_list = [shelf.to_simple_dict() for shelf in shelves]
     return {'shelf_list': shelves_list}
 
