@@ -9,6 +9,7 @@ import User from "./components/User";
 import { authenticate } from "./services/auth";
 import SideBar from "./components/SideBar";
 import Homepage from "./components/Homepage";
+import Bookshelf from "./components/Bookshelf";
 
 
 // function Layout(props) {
@@ -57,7 +58,10 @@ function App() {
       <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
         <Homepage user = {user}/>
       </ProtectedRoute>
-      {/* </Layout> */}
+      <ProtectedRoute path="/bookshelf/:bookshelfId" exact={true} authenticated={authenticated}>
+        <Bookshelf  user = {user}/>
+      </ProtectedRoute>
+      
     </BrowserRouter>
   );
 }

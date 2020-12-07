@@ -20,6 +20,15 @@ def create_bookshelf():
                 about=form.data['about'],
                 owner=current_user.id
             )
+            i = form.data['shelves']
+
+            for (j = 0; j < i; j++):
+                shelf = Shelf(
+                    bookshelfId=bookshelf.id,
+                )
+                db.session.add(shelf)
+
+
             db.session.add(bookshelf)
             db.session.commit()
             return bookshelf.to_simple_dict()
@@ -27,8 +36,15 @@ def create_bookshelf():
             return {"errors": "Bookshelf already exists, please choose a different name"}
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
+@bookshelf_routes.route('/<int:id>/shelves')
+@login_required
+def get_bookshelf_shelves(id):
+    bookeshelf= Bookshelf.query.filter(Bookshelf.id == id).first()
+    shelves = Shelf.query.filter(bookeshelf.id == Shelf.bookshelfId).all()
+    shelves_list = [shelf.to_simple_dict() for shelf in shelves]
+    return {'shelf_list': shelves_list}
 
-@bookshelf_routes.route('/<string:name>/shelves')
+@bookshelf_routes.route('/search/<string:name>/shelves')
 @login_required
 def get_shelves(name):
     bookeshelf= Bookshelf.query.filter(Bookshelf.name == name).first()

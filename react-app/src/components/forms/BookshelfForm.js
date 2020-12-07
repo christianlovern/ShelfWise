@@ -6,6 +6,7 @@ import reducer from "../../services/reducers/bookshelf_reducer"
 const BookshelfForm = (props) => {
     const [name, setName] = useState('');
     const [about, setAbout] = useState('');
+    const [shelves, setShelves] = useState(0)
 
 
     const updateValue = (setFunc) => (e) => {
@@ -14,7 +15,7 @@ const BookshelfForm = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const bookshelf = await createBookshelf(name, about);
+        const bookshelf = await createBookshelf(name, about, shelves);
         if(bookshelf){
             console.log("form dispatch");
             props.dispatch({type: 'SUBMIT_BOOKSHELF', item: bookshelf})
@@ -51,6 +52,16 @@ const BookshelfForm = (props) => {
                     placeholder='About'
                     value={about}
                     onChange={updateValue(setAbout)}
+                    />
+            </div>
+            <div>
+                <label className="bookshelf__form__label" htmlFor='Shelves'>Number of shelves</label>
+                    <input
+                    className="bookshelf__form__input"
+                    name='shelves'
+                    type='number'
+                    value={shelves}
+                    onChange={updateValue(setShelves)}
                     />
             </div>
             <div>
