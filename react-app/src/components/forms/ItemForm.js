@@ -60,7 +60,7 @@ const ItemForm = (props) => {
     const updateBookshelf = (setBookshelf) =>  (e) => {
         setBookshelf(e.target.value)
         const fetchShelves = async () => {
-            const shelfResponse = await fetch(`api/bookshelf/${e.target.value}/shelves`)
+            const shelfResponse = await fetch(`api/bookshelf/search/${e.target.value}/shelves`)
             const shelves = await shelfResponse.json();
             if(shelves){
                 setShelfList(shelves.shelf_list)

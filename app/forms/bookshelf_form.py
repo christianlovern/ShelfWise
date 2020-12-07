@@ -15,3 +15,4 @@ def bookshelf_exists(form, field):
 class BookshelfForm(FlaskForm):
     name = StringField('name', validators=[DataRequired(), bookshelf_exists])
     about = TextAreaField('about')
+    shelves = IntegerField('shelves')

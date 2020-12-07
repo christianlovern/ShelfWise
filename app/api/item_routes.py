@@ -43,3 +43,11 @@ def createItem():
         except IntegrityError:
             return {"errors": "Could not create item at this time"}
     return {'errors': "Could not create item"}, 401
+
+
+@item_routes.route('/<int:shelfId>')
+@login_required
+def items_by_shelfid(shelfId):
+    items = Item.query.filter(Item.shelfId == shelfId).all()
+    item_list = [item.to_dict() for item in items]
+    return {"item_list": item_list}

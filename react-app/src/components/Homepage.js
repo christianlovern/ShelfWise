@@ -11,8 +11,8 @@ import ItemForm from "./forms/ItemForm"
 
 const Homepage = ({ user }) => {
     const [hidden, setHidden] = useState(true)
-    const [bookcases, setBookcases] = useState([]);
     const [checkedOut, setCheckedOut] = useState([]);
+    const [bookcases, setBookcases] = useState([]);
     const [state, dispatch] = useReducer(bookshelfReducer, [])
 
     useEffect(() => {

@@ -16,4 +16,13 @@ def search_res(res):
         "bookshelfs": [bookshelf.to_simple_dict() for bookshelf in bookshelfs],
         "items": [item.to_dict() for item in items]
     }
+
+@search_routes.route('/bookshelf/<string:res>', methods=["GET"])
+def search_bookshelf_res(res):
+    items = Item.query.filter(Item.name.ilike(f'%{res}%')).limit(5)
+    if not items:
+        return {'Item does not exist, please try again...'}
+    return {
+        "items": [item.to_dict() for item in items]
+    }
     
