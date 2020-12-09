@@ -1,7 +1,7 @@
 import React, { useState, useReducer } from 'react'
 
 
-export const createBookshelf = async(name, about) => {
+export const createBookshelf = async(name, about, shelves) => {
     // const [state, dispatch] = useReducer(reducer, [])
 
     const response = await fetch('api/bookshelf/create', {
@@ -11,7 +11,8 @@ export const createBookshelf = async(name, about) => {
         },
         body: JSON.stringify({
             name,
-            about
+            about,
+            shelves
         })
     });
     return await response.json()

@@ -12,24 +12,29 @@ bookshelf_routes = Blueprint('bookshelf', __name__)
 def create_bookshelf():
 
     form = BookshelfForm()
+    print(form.data['name'])
+    print(form.data['about'])
+    print(form.data['shelves'])
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        print("In post")
         try:
             bookshelf = Bookshelf(
                 name=form.data['name'],
                 about=form.data['about'],
                 owner=current_user.id
             )
-            i = form.data['shelves']
+            
+            db.session.add(bookshelf)
+            db.session.commit()
 
-            for (j = 0; j < i; j++):
-                shelf = Shelf(
+            for shelf in range(form.data['shelves']):
+                currShelf = Shelf(
                     bookshelfId=bookshelf.id,
                 )
-                db.session.add(shelf)
+                db.session.add(currShelf)
 
 
-            db.session.add(bookshelf)
             db.session.commit()
             return bookshelf.to_simple_dict()
         except IntegrityError:

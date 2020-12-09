@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
+import ShelfBox from "./components/Shelf"
 import { authenticate } from "./services/auth";
 import SideBar from "./components/SideBar";
 import Homepage from "./components/Homepage";
@@ -20,7 +21,8 @@ function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [user, setUser] = useState({})
-
+  const [shelfItems, setShelfItems] = useState([])
+  const [bookshelves, setBookshelves] = useState([])
   useEffect(() => {
     (async() => {
       const user = await authenticate();
@@ -38,12 +40,12 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* <Layout> */}
       <NavBar setAuthenticated={setAuthenticated} authenticated = {authenticated} />
       <Route path="/login" exact={true}>
         <LoginForm
           authenticated={authenticated}
           setAuthenticated={setAuthenticated}
+          setUser = {setUser}
         />
       </Route>
       <Route path="/sign-up" exact={true}>
@@ -56,12 +58,14 @@ function App() {
         <User />
       </ProtectedRoute>
       <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
-        <Homepage user = {user}/>
+        <Homepage user = {user} setBookshelves={setBookshelves}/>
       </ProtectedRoute>
       <ProtectedRoute path="/bookshelf/:bookshelfId" exact={true} authenticated={authenticated}>
-        <Bookshelf  user = {user}/>
+        <Bookshelf  user = {user} appBookshelves={bookshelves} setShelfItems={setShelfItems}/>
       </ProtectedRoute>
-      
+      <ProtectedRoute path="/shelf/:shelfId" exact={true} authenticated={authenticated}>
+        <ShelfBox user = {user} shelfItems={shelfItems}/>
+      </ProtectedRoute>
     </BrowserRouter>
   );
 }

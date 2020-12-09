@@ -30,5 +30,6 @@ class Item(db.Model):
       "position":self.position,
       "typeId":self.typeId,
       "catagoryId":self.catagoryId,
-      "checked_out":self.checked_out
+      "checked_out":self.checked_out,
+      "favorite":self.favorite
     }
