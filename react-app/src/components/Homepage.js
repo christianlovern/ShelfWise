@@ -1,19 +1,15 @@
 import React, { useState, useEffect, useReducer } from 'react';
-import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
 import SideBar from './SideBar';
 import CheckedBox from './Checked'
 import BookshelfForm from "./forms/BookshelfForm"
-import bookshelfReducer from "../services/reducers/bookshelf_reducer"
 import InviteBox from "./InviteBox"
 import SearchBox from './SearchBox'
 import ItemForm from "./forms/ItemForm"
 
-const Homepage = ({ user }) => {
+const Homepage = ({ user, setBookshelves }) => {
     const [hidden, setHidden] = useState(true)
     const [checkedOut, setCheckedOut] = useState([]);
     const [bookcases, setBookcases] = useState([]);
-    const [state, dispatch] = useReducer(bookshelfReducer, [])
 
     useEffect(() => {
         const fetchCases = async () => {
@@ -21,15 +17,14 @@ const Homepage = ({ user }) => {
             const bookcases = await caseResponse.json();
             let list = bookcases.bookshelf_list
             if(list){
-                console.log("Here");
-                dispatch({type: 'GET_BOOKSHELF', item: list})
+                setBookshelves(list)
+                setBookcases(list)
             }
         }
 
         const fetchChecked = async () => {
             const fetchResponse = await fetch(`/api/items/checked`)
             const response = await fetchResponse.json();
-            console.log(response.items);
             setCheckedOut(response.items)
         }
 
@@ -41,7 +36,7 @@ const Homepage = ({ user }) => {
         if (!hidden){
             return(
                 <div className="bookshelf__form-modal">
-                    <BookshelfForm hidden={hidden} setHidden={setHidden} state = {state} reducer = {bookshelfReducer} dispatch = {dispatch}/>
+                    <BookshelfForm hidden={hidden} setHidden={setHidden} state = {bookcases}/>
                 </div>
             )
         } else{
@@ -51,10 +46,10 @@ const Homepage = ({ user }) => {
 
   return (
     <div className="main__container">
-      <SideBar bookcases = {state} hidden={hidden} setHidden= {setHidden} />
+      <SideBar bookcases = {bookcases} hidden={hidden} setHidden= {setHidden} />
       <h1 className="homepage__header">Welcome {user.firstname}!</h1>
       <ShowForm />
-      <ItemForm user={user} state = {state} dispatch = {dispatch} />
+      <ItemForm user={user} state = {bookcases} />
       <CheckedBox checkedOut = {checkedOut}/>
       <SearchBox />
       <InviteBox />

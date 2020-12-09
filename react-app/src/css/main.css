@@ -266,14 +266,7 @@ body{
     margin-bottom: 15%;
 }
 
-.search-container__results-box{
-    background-color: white;
-    text-align: center;
-    width: 80%;
-    margin-left: 10%;
-    margin-top: 2%;
-    border: 2px solid #0f4970;
-}
+
 
 li {
     list-style: none;
@@ -308,19 +301,20 @@ li {
 }
 
 .bookshelf-view__bookshelf-container{
-    background-color: #ffe3c8;
+    background-color: white;
     grid-column-start: 2;
     grid-row-start: 2;
     grid-row-end: 5;
     width: 75%;
     justify-self: center;
-    border: 2px solid #0f4970;
     border-top: 10px solid black;
 }
 
 .bookshelf-view__bookshelf-shelves{
     display: flex;
     background-color: gray;
+    border-left: 2px solid #0f4970;
+    border-right: 2px solid #0f4970;
     border-bottom: 10px solid black;
     height: 15%;
     flex-direction: row;
@@ -345,6 +339,7 @@ li {
     grid-column-start: 3;
     grid-row-start: 1;
     grid-row-end: 1;
+    
 }
 
 .bookshelf-view__bookshelf-search-input{
@@ -353,4 +348,92 @@ li {
     font-size: x-large;
     margin-left: 10%;
     margin-top: 2%;
+}
+
+.search-container__results-box{
+    background-color: white;
+    text-align: center;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 2%;
+    border: 2px solid #0f4970;
+}
+
+.favorite-list-container{
+    background-color: #ffe3c8;
+    width: 90%;
+    border: 2px solid #0f4970;
+    grid-column-start: 3;
+    grid-row-start: 2;
+    grid-row-end: 5;
+}
+
+.favorite-list-header{
+    text-align: center;
+}
+
+.bookkshelf-view__shelf-link{
+    text-decoration: none;
+    color: black;
+}
+
+.item-view__link {
+    text-decoration: none;
+    color: black;
+    width: fit-content;
+    margin-right: 5px;
+    text-orientation: sideways;
+    writing-mode: vertical-rl;
+    font-weight: bold;
+}
+
+.shelf-view__shelf-search-container{
+    margin-top: 2%;
+    background-color: #ffe3c8;
+    width: 90%;
+    height: 75%;
+    border: 2px solid #0f4970;
+    grid-column-start: 3;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+
+.shelf-view__shelf-search-input{
+    text-align: center;
+    width: 80%;
+    font-size: x-large;
+    margin-left: 10%;
+    margin-top: 4%;
+}
+
+.shelf-view__favorite-container{
+    margin-top: 2%;
+    background-color: #ffe3c8;
+    width: 90%;
+    height: 75%;
+    border: 2px solid #0f4970;
+    grid-column-start: 3;
+    grid-row-start: 2;
+    grid-row-end: 2;
+}
+
+.item-view__bookshelf-container{
+    background-color: white;
+    grid-column-start: 2;
+    grid-row-start: 2;
+    grid-row-end: 5;
+    width: 75%;
+    height: fit-content;
+    justify-self: center;
+    border-top: 10px solid black;
+}
+
+.item-view__bookshelf-shelves{
+    display: flex;
+    background-color: gray;
+    border-left: 2px solid #0f4970;
+    border-right: 2px solid #0f4970;
+    border-bottom: 10px solid black;
+    height: 100px;
+    flex-direction: row;
 }

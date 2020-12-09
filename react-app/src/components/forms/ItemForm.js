@@ -64,7 +64,6 @@ const ItemForm = (props) => {
             const shelves = await shelfResponse.json();
             if(shelves){
                 setShelfList(shelves.shelf_list)
-                console.log("SHELVES", shelves);
             }
         }
         fetchShelves()
@@ -91,7 +90,6 @@ const ItemForm = (props) => {
     const handleSubmit = async (e) => {
         const item = await createItem(name, description, favorite, type, catagory, shelf);
         if(item){
-            console.log("form dispatch");
             props.dispatch({type: 'SUBMIT_ITEM', item: item})
         }
     }

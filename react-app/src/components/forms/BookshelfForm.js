@@ -17,7 +17,6 @@ const BookshelfForm = (props) => {
         e.preventDefault();
         const bookshelf = await createBookshelf(name, about, shelves);
         if(bookshelf){
-            console.log("form dispatch");
             props.dispatch({type: 'SUBMIT_BOOKSHELF', item: bookshelf})
         }
         
