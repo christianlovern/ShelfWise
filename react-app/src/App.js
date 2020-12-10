@@ -11,7 +11,7 @@ import { authenticate } from "./services/auth";
 import SideBar from "./components/SideBar";
 import Homepage from "./components/Homepage";
 import Bookshelf from "./components/Bookshelf";
-
+import ItemView from "./components/Item"
 
 // function Layout(props) {
 //   return <div id="layout">{props.children}</div>;
@@ -19,10 +19,14 @@ import Bookshelf from "./components/Bookshelf";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
+  const [hidden, setHidden] = useState(true);
   const [loaded, setLoaded] = useState(false);
   const [user, setUser] = useState({})
   const [shelfItems, setShelfItems] = useState([])
   const [bookshelves, setBookshelves] = useState([])
+  
+
+  
   useEffect(() => {
     (async() => {
       const user = await authenticate();
@@ -40,7 +44,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar setAuthenticated={setAuthenticated} authenticated = {authenticated} />
+      <NavBar setAuthenticated={setAuthenticated} authenticated = {authenticated} hidden={hidden} setHidden={setHidden} bookshelves={bookshelves} setBookshelves={setBookshelves}/>
       <Route path="/login" exact={true}>
         <LoginForm
           authenticated={authenticated}
@@ -58,13 +62,16 @@ function App() {
         <User />
       </ProtectedRoute>
       <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
-        <Homepage user = {user} setBookshelves={setBookshelves}/>
+        <Homepage   user = {user} setBookshelves={setBookshelves} hidden={hidden} setHidden={setHidden}/>
       </ProtectedRoute>
       <ProtectedRoute path="/bookshelf/:bookshelfId" exact={true} authenticated={authenticated}>
-        <Bookshelf  user = {user} appBookshelves={bookshelves} setShelfItems={setShelfItems}/>
+        <Bookshelf  user = {user} appBookshelves={bookshelves} setShelfItems={setShelfItems} hidden={hidden} setHidden={setHidden}/>
       </ProtectedRoute>
       <ProtectedRoute path="/shelf/:shelfId" exact={true} authenticated={authenticated}>
-        <ShelfBox user = {user} shelfItems={shelfItems}/>
+        <ShelfBox  user = {user} shelfItems={shelfItems} hidden={hidden} setHidden={setHidden}/>
+      </ProtectedRoute>
+      <ProtectedRoute path="/item/:itemId" exact={true} authenticated={authenticated}>
+        <ItemView  user = {user}  hidden={hidden} setHidden={setHidden}/>
       </ProtectedRoute>
     </BrowserRouter>
   );

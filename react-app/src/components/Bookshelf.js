@@ -6,13 +6,11 @@ import ShelfBox from './Shelf';
 import SideBar from './SideBar';
 
 
-const Bookshelf = ({ user,appBookshelves,setShelfItems }) => {
+const Bookshelf = ({ user,appBookshelves,setShelfItems, hidden, setHidden }) => {
     let pathname = (window.location.pathname.split('/'));
     let currBookshelfId = pathname[2]
-    const [state, dispatch] = useReducer(bookshelfReducer, [])
-    const [test, setTest] = useState(appBookshelves)
-    const [hidden, setHidden] = useState(true)
-    const [bookshelves, setBookshelves] = useState([])
+    const [bookcases, setBookcases] = useState(appBookshelves)
+    const [shelves, setShelves] = useState([])
     const [bookshelfId, setBookshelfId] = useState(currBookshelfId)
     const [items, setItems] = useState({})
     const [search, setSearch] = useState('')
@@ -26,7 +24,7 @@ const Bookshelf = ({ user,appBookshelves,setShelfItems }) => {
                 let list = bookcases.bookshelf_list
                 if(list){
                     // dispatch({type: 'GET_BOOKSHELF', item: list})
-                    setTest(list)
+                    setBookcases(list)
                 }
             }
             fetchCases();
@@ -36,7 +34,7 @@ const Bookshelf = ({ user,appBookshelves,setShelfItems }) => {
             const response = await fetch(`/api/bookshelf/${bookshelfId}/shelves`)
             let shelves = await response.json()
               if (shelves) {
-                setBookshelves(shelves)
+                setShelves(shelves)
                 
               }
               let newItems = {}
@@ -71,11 +69,11 @@ const Bookshelf = ({ user,appBookshelves,setShelfItems }) => {
       }
 
     
-    const ShowForm = () => {
+      const ShowForm = () => {
         if (!hidden){
             return(
                 <div className="bookshelf__form-modal">
-                    <BookshelfForm hidden={hidden} setHidden={setHidden} state = {state} reducer = {bookshelfReducer} dispatch = {dispatch}/>
+                    <BookshelfForm hidden={hidden} setHidden={setHidden} bookcases = {bookcases} setBookcases={setBookcases}/>
                 </div>
             )
         } else{
@@ -94,7 +92,7 @@ const Bookshelf = ({ user,appBookshelves,setShelfItems }) => {
                             {searchItems.map((item) => {
                             return(
                                 <li key = {item.id} value = {item.name}>
-                                    <NavLink className="search__results-link" to = {`/items/${item.id}`}>{item.name}</NavLink>
+                                    <NavLink  className="search__results-link" to = {`/items/${item.id}`}>{item.name}</NavLink>
                                 </li>
                             )
                             })}
@@ -108,11 +106,10 @@ const Bookshelf = ({ user,appBookshelves,setShelfItems }) => {
 
 
     const populateShelves =  () => {
-        if(bookshelves.length !== 0){
-            return  bookshelves.shelf_list.map((shelf) => {
+        if(shelves.length !== 0){
+            return  shelves.shelf_list.map((shelf) => {
                 let shelfItems = items[shelf.id]
                 if (shelfItems){
-                    console.log("bookshelf shelf items",shelfItems);
                     return (
                         <NavLink onClick={() => setShelfItems(shelfItems)} className="bookkshelf-view__shelf-link" to={`/shelf/${shelf.id}`}>
                             <div className="bookshelf-view__bookshelf-shelves">
@@ -152,7 +149,7 @@ const Bookshelf = ({ user,appBookshelves,setShelfItems }) => {
  
   return (
     <div className="main-bookshelf__container">
-        <SideBar bookcases = {test} hidden={hidden} setHidden= {setHidden} setBookshelfId = {setBookshelfId}/>
+        <SideBar bookcases = {bookcases} setBookshelfId = {setBookshelfId}/>
         <div className="bookshelf-view__header-container">
             <h2 className="bookshelf-view__header">Click on a shelf for a deeper look!</h2>
         </div>

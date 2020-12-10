@@ -19,18 +19,10 @@ const SideBar = ({ bookcases, hidden ,setHidden, setBookshelfId }) => {
         }
     })
 
-    const updateHidden = () => {
-        return setHidden(!hidden)
-    }
-
-
   return (
     <div className="sidebar__container">
         <h2 className="sidebar__bookshelf-title">Bookshelves</h2>
         <ul>{bookcaseList}</ul>
-        <button className="sidebar__create-bookshelf-button" onClick={updateHidden}>
-            New Bookshelf
-        </button>
     </div>
   );
 }

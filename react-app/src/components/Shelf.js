@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useReducer } from 'react';
-import { NavLink } from 'react-router-dom';
-import bookshelfReducer from '../services/reducers/bookshelf_reducer';
+import { NavLink, BrowserRouter, Route } from 'react-router-dom';
 import BookshelfForm from './forms/BookshelfForm';
 import SideBar from './SideBar';
 import CheckedBox from './Checked'
+import ItemView from './Item'
 
-const ShelfBox = ({ user, shelfItems }) => {
+
+const ShelfBox = ({ user, shelfItems, hidden, setHidden }) => {
     let pathname = (window.location.pathname.split('/'));
     let currshelfId = pathname[2];
-    const [hidden, setHidden] = useState(true)
     const [bookshelves, setBookshelves] = useState([])
     const [items, setItems] = useState(shelfItems)
     const [focus, setFocus] = useState(false) 
@@ -17,7 +17,6 @@ const ShelfBox = ({ user, shelfItems }) => {
     const [checkedOut, setCheckedOut] = useState([])
     
     useEffect(() => {
-        console.log("top of effect", items);
         const fetchItems= async() => {
             if(shelfItems.length === 0){
                 const response = await fetch(`/api/items/${currshelfId}`)
@@ -44,12 +43,11 @@ const ShelfBox = ({ user, shelfItems }) => {
         if(items.length !== 0){
             items.map((item) => {
                 if(item.checked_out === true){
-                    console.log("in if",item);
                     checked.push(item)
                 }
             })
         } 
-        console.log("checked",checked)
+    
         return checked
     }
     const changeFocus = () => {
@@ -80,8 +78,8 @@ const ShelfBox = ({ user, shelfItems }) => {
                         <ul>
                             {searchItems.map((item) => {
                             return(
-                                <li key = {item.id} value = {item.name}>
-                                    <NavLink className="search__results-link" to = {`/items/${item.id}`}>{item.name}</NavLink>
+                                <li  key = {item.id} value = {item.name}>
+                                    <NavLink className="search__results-link" to = {`/item/${item.id}`}>{item.name}</NavLink>
                                 </li>
                             )
                             })}
@@ -111,20 +109,19 @@ const ShelfBox = ({ user, shelfItems }) => {
     const ShowForm = () => {
         if (!hidden){
             return(
-                
                 <div className="bookshelf__form-modal">
-                    <BookshelfForm hidden={hidden} setHidden={setHidden} state = {bookshelves} />
+                    <BookshelfForm hidden={hidden} setHidden={setHidden} bookcases = {bookshelves} setBookcases={setBookshelves}/>
                 </div>
             )
         } else{
             return null;
         }
     }
-    console.log("checked out",checkedOut);
+   
     return (
         <div className="main-bookshelf__container">
             <SideBar bookcases = {bookshelves} hidden={hidden} setHidden= {setHidden} />
-            <div className="bookshelf-view__header-container">
+            <div className="shelf-view__header-container">
                 <h2 className="bookshelf-view__header">Click on an Item for a deeper look!</h2>
             </div>
             <ShowForm />
@@ -132,8 +129,8 @@ const ShelfBox = ({ user, shelfItems }) => {
                 <div className="item-view__bookshelf-shelves">
                     {items.length !== 0 ? items.map((item) => {
                         return( 
-                            <NavLink className="item-view__link" to = {`/items/${item.id}`}>
-                                <div className="bookshelf-view__bookshelf-items">{item.name}</div>
+                            <NavLink className="item-view__link" to = {`/item/${item.id}`}>
+                                <div className="shelf-view__bookshelf-items">{item.name}</div>
                             </NavLink>
                         )
                     }): null}
@@ -144,10 +141,10 @@ const ShelfBox = ({ user, shelfItems }) => {
                 <div>{searchBox()}</div>
             </div>
             <div className="shelf-view__favorite-container">
-                <h1 className="favorite-list-header">Favorite items in this bookcase</h1>
+                <h2 className="favorite-list-header">Favorite items in this bookcase</h2>
                 <ul>{populateFavorites()}</ul>
             </div>
-            <CheckedBox checkedOut = {getChecked()}/>
+            <CheckedBox checkedOut = {getChecked()} name={"shelf"}/>
         </div>
     );
 }

@@ -2,11 +2,10 @@ import React, { useState, useReducer } from 'react'
 
 
 export const createBookshelf = async(name, about, shelves) => {
-    // const [state, dispatch] = useReducer(reducer, [])
-
-    const response = await fetch('api/bookshelf/create', {
+    const response = await fetch('/api/bookshelf/create', {
         method: "POST",
         headers: {
+            'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({

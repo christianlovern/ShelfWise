@@ -51,3 +51,10 @@ def items_by_shelfid(shelfId):
     items = Item.query.filter(Item.shelfId == shelfId).all()
     item_list = [item.to_dict() for item in items]
     return {"item_list": item_list}
+
+
+@item_routes.route('/item/<int:itemId>')
+@login_required
+def items_by_id(itemId):
+    item = Item.query.filter(Item.id == itemId).first()
+    return {"item": item.to_dict()}
