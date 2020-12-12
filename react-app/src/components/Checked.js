@@ -5,23 +5,22 @@ import { NavLink } from 'react-router-dom';
 
 const CheckedBox = ({  checkedOut, name }) => {
 
-    const checkIn = async (item) => {
+    const check = async (item) => {
         await fetch(`/api/items/${item.id}/checked`, {
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json; charset=UTF-8'
             },
-            // body: JSON.stringify({'checked_out': !item.checked_in})
-            
         })
+
     }
 
 
     const checkedList = checkedOut.map((item) => {
         return (
             <li className="homepage-checked-out__list" key={item.name}>
-                <NavLink className="homepage__checked-out-link" to={`/item/${item.id}`}>{item.name}</NavLink>
-                <button className="check-in__btn" onClick={() => checkIn(item)}>Check In</button>
+                <NavLink className="homepage__checked-out-link" to={`/shelf/${item.shelfId}/item/${item.id}`}>{item.name}</NavLink>
+                <button className="check-in__btn" onClick={() => check(item)}>Check In</button>
             </li>
         )
     })

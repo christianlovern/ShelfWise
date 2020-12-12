@@ -70,7 +70,7 @@ function App() {
       <ProtectedRoute path="/shelf/:shelfId" exact={true} authenticated={authenticated}>
         <ShelfBox  user = {user} shelfItems={shelfItems} hidden={hidden} setHidden={setHidden}/>
       </ProtectedRoute>
-      <ProtectedRoute path="/item/:itemId" exact={true} authenticated={authenticated}>
+      <ProtectedRoute path="/shelf/:currShelfId/item/:currItemId" exact={true} authenticated={authenticated}>
         <ItemView  user = {user}  hidden={hidden} setHidden={setHidden}/>
       </ProtectedRoute>
     </BrowserRouter>

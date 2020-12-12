@@ -45,7 +45,7 @@ const Homepage = ({  user, setBookshelves, hidden, setHidden }) => {
 
   return (
     <div className="main__container">
-      <SideBar bookcases = {bookcases} />
+      <SideBar  bookcases = {bookcases} />
       <h1 className="homepage__header">Welcome {user.firstname}!</h1>
       <ShowForm />
       <ItemForm user={user} state = {bookcases} />

@@ -41,7 +41,7 @@ const SearchBox = () => {
                   {items.map((item) => {
                     return(
                       <li key = {item.id} value = {item.name}>
-                        <NavLink className="search__results-link" to = {`/items/${item.id}`}>{item.name}</NavLink>
+                        <NavLink className="search__results-link" to = {`/shelf/${item.shelfId}/item/${item.id}`}>{item.name}</NavLink>
                       </li>
                     )
                   })}
@@ -81,7 +81,7 @@ const SearchBox = () => {
                   {items.map((item) => {
                     return(
                       <li key = {item.id} value = {item.name}>
-                        <NavLink className="search__results-link" to = {`/items/${item.id}`}>{item.name}</NavLink>
+                        <NavLink className="search__results-link" to = {`/shelf/${item.shelfId}/item/${item.id}`}>{item.name}</NavLink>
                       </li>
                     )
                   })}

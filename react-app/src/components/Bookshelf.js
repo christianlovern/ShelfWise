@@ -6,7 +6,7 @@ import ShelfBox from './Shelf';
 import SideBar from './SideBar';
 
 
-const Bookshelf = ({ user,appBookshelves,setShelfItems, hidden, setHidden }) => {
+const Bookshelf = ({ user, appBookshelves,setShelfItems, hidden, setHidden }) => {
     let pathname = (window.location.pathname.split('/'));
     let currBookshelfId = pathname[2]
     const [bookcases, setBookcases] = useState(appBookshelves)
@@ -92,7 +92,7 @@ const Bookshelf = ({ user,appBookshelves,setShelfItems, hidden, setHidden }) => 
                             {searchItems.map((item) => {
                             return(
                                 <li key = {item.id} value = {item.name}>
-                                    <NavLink  className="search__results-link" to = {`/items/${item.id}`}>{item.name}</NavLink>
+                                    <NavLink  className="search__results-link" to={`/shelf/${item.shelfId}/item/${item.id}`}>{item.name}</NavLink>
                                 </li>
                             )
                             })}
@@ -110,6 +110,7 @@ const Bookshelf = ({ user,appBookshelves,setShelfItems, hidden, setHidden }) => 
             return  shelves.shelf_list.map((shelf) => {
                 let shelfItems = items[shelf.id]
                 if (shelfItems){
+                    if(shelfItems.length !== 0)
                     return (
                         <NavLink onClick={() => setShelfItems(shelfItems)} className="bookkshelf-view__shelf-link" to={`/shelf/${shelf.id}`}>
                             <div className="bookshelf-view__bookshelf-shelves">
@@ -136,7 +137,7 @@ const Bookshelf = ({ user,appBookshelves,setShelfItems, hidden, setHidden }) => 
                             if(item.favorite === true){
                                 return (
                                     <li className="favorites-list-item" key = {item.id}>
-                                        <NavLink  className="sidebar__bookshelf-link" to={`/item/${item.id}`}>{item.name}</NavLink>
+                                        <NavLink  className="sidebar__bookshelf-link" to={`/shelf/${item.shelfId}/item/${item.id}`}>{item.name}</NavLink>
                                     </li>
                                 )
                             }

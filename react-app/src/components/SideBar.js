@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 
-const SideBar = ({ bookcases, hidden ,setHidden, setBookshelfId }) => {
+const SideBar = ({ bookcases, setBookshelfId }) => {
   const bookcaseList = bookcases.map((cases) => {
       if (setBookshelfId){
         return (

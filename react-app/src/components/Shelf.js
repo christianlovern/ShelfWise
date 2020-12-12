@@ -79,7 +79,7 @@ const ShelfBox = ({ user, shelfItems, hidden, setHidden }) => {
                             {searchItems.map((item) => {
                             return(
                                 <li  key = {item.id} value = {item.name}>
-                                    <NavLink className="search__results-link" to = {`/item/${item.id}`}>{item.name}</NavLink>
+                                    <NavLink className="search__results-link" to = {`/shelf/${item.shelfId}/item/${item.id}`}>{item.name}</NavLink>
                                 </li>
                             )
                             })}
@@ -97,7 +97,7 @@ const ShelfBox = ({ user, shelfItems, hidden, setHidden }) => {
                 if(item.favorite === true){
                     return (
                         <li className="favorites-list-item" key = {item.id}>
-                            <NavLink  className="sidebar__bookshelf-link" to={`/item/${item.id}`}>{item.name}</NavLink>
+                            <NavLink  className="sidebar__bookshelf-link" to={`/shelf/${item.shelfId}/item/${item.id}`}>{item.name}</NavLink>
                         </li>
                     )
                 }
@@ -129,7 +129,7 @@ const ShelfBox = ({ user, shelfItems, hidden, setHidden }) => {
                 <div className="item-view__bookshelf-shelves">
                     {items.length !== 0 ? items.map((item) => {
                         return( 
-                            <NavLink className="item-view__link" to = {`/item/${item.id}`}>
+                            <NavLink className="item-view__link" to = {`/shelf/${item.shelfId}/item/${item.id}`}>
                                 <div className="shelf-view__bookshelf-items">{item.name}</div>
                             </NavLink>
                         )
