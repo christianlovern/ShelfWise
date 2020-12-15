@@ -63,7 +63,7 @@ const LoginForm = ({ authenticated, setAuthenticated, setUser }) => {
             <button type="submit">Login</button>
           </div>
           </div>
-          <div>
+          <div className="login-page__p">
             Don't have an account? Sign up now!
           </div>
           <button>

@@ -671,3 +671,12 @@ li {
     padding: 2%;
     background-color: white;
 }
+
+.sign-up__login-p{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.login-page__p{
+    margin-bottom: 10px;
+}
