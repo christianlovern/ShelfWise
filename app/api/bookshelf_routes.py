@@ -52,8 +52,16 @@ def get_bookshelf_shelves(id):
 @bookshelf_routes.route('/search/<string:name>/shelves')
 @login_required
 def get_shelves(name):
-    bookeshelf= Bookshelf.query.filter(Bookshelf.name == name).first()
-    shelves = Shelf.query.filter(bookeshelf.id == Shelf.bookshelfId).all()
+    bookshelf= Bookshelf.query.filter(Bookshelf.name == name).first()
+    shelves = Shelf.query.filter(bookshelf.id == Shelf.bookshelfId).all()
     shelves_list = [shelf.to_simple_dict() for shelf in shelves]
     return {'shelf_list': shelves_list}
 
+@bookshelf_routes.route('/shelf/<int:id>/name')
+@login_required
+def get_bookshelf(id):
+    shelf = Shelf.query.filter(Shelf.id == id).first()
+    bookshelf = Bookshelf.query.filter(Bookshelf.id == shelf.bookshelfId).first()
+    shelves = Shelf.query.filter(bookshelf.id == Shelf.bookshelfId).all()
+    shelves_list = [shelf.to_simple_dict() for shelf in shelves]
+    return {'bookshelf': bookshelf.name, 'shelf_list': shelves_list}

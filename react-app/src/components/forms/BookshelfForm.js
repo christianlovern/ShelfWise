@@ -16,11 +16,8 @@ const BookshelfForm = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const bookshelf = await createBookshelf(name, about, shelves);
-        if(bookshelf){
-            props.dispatch({type: 'SUBMIT_BOOKSHELF', item: bookshelf})
-        }
-        
-        
+        props.setBookcases([...props.bookcases, bookshelf]) 
+        props.setHidden(!props.hidden)
     }
 
 

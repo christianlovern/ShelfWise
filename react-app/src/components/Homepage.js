@@ -6,8 +6,7 @@ import InviteBox from "./InviteBox"
 import SearchBox from './SearchBox'
 import ItemForm from "./forms/ItemForm"
 
-const Homepage = ({ user, setBookshelves }) => {
-    const [hidden, setHidden] = useState(true)
+const Homepage = ({  user, setBookshelves, hidden, setHidden }) => {
     const [checkedOut, setCheckedOut] = useState([]);
     const [bookcases, setBookcases] = useState([]);
 
@@ -36,7 +35,7 @@ const Homepage = ({ user, setBookshelves }) => {
         if (!hidden){
             return(
                 <div className="bookshelf__form-modal">
-                    <BookshelfForm hidden={hidden} setHidden={setHidden} state = {bookcases}/>
+                    <BookshelfForm hidden={hidden} setHidden={setHidden} bookcases = {bookcases} setBookcases={setBookcases}/>
                 </div>
             )
         } else{
@@ -46,11 +45,11 @@ const Homepage = ({ user, setBookshelves }) => {
 
   return (
     <div className="main__container">
-      <SideBar bookcases = {bookcases} hidden={hidden} setHidden= {setHidden} />
+      <SideBar  bookcases = {bookcases} />
       <h1 className="homepage__header">Welcome {user.firstname}!</h1>
       <ShowForm />
       <ItemForm user={user} state = {bookcases} />
-      <CheckedBox checkedOut = {checkedOut}/>
+      <CheckedBox checkedOut = {checkedOut} name={"homepage"}/>
       <SearchBox />
       <InviteBox />
     </div>
