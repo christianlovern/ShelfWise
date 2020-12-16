@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
+import BookshelfForm from './forms/BookshelfForm'
+
 
 const NavBar = ({ setAuthenticated, authenticated, hidden, setHidden, bookshelves, setBookshelves }) => {
 
@@ -24,7 +26,9 @@ const NavBar = ({ setAuthenticated, authenticated, hidden, setHidden, bookshelve
       </>
       : 
       <div className='navbar__header'>
+
           Welcome to ShelfWise!
+
       </div>}
 
     </div>

@@ -37,8 +37,8 @@ const EditItemForm = (props) => {
         }
 
         fetchCases();
-    
     }, [props.user])
+
 
     const updateCatagories = (setType) =>(e) => {
         setType(e.target.value)
@@ -65,7 +65,6 @@ const EditItemForm = (props) => {
         }
         fetchShelves()
     }
-    
     // const checktype = () => {
     //     if(!type === "") {
     //         return (

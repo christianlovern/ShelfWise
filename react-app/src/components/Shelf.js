@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import BookshelfForm from './forms/BookshelfForm';
 import SideBar from './SideBar';
 import CheckedBox from './Checked'
+import ItemView from './Item'
 
 
 const ShelfBox = ({ user, shelfItems, hidden, setHidden }) => {
