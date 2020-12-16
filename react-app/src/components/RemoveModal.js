@@ -1,13 +1,14 @@
 
-import React, { useState, useEffect, useReducer } from 'react';
-import { Redirect, useHistory } from "react-router-dom";
+import React from 'react';
+import { useHistory } from "react-router-dom";
+
 
 
 
 const RemoveModal = ({ shelfId, setRemove, item }) => {
     const history = useHistory()
    const deleteItem = async(item) => {
-        let response = await fetch(`/api/items/${item.id}/delete`, {
+        await fetch(`/api/items/${item.id}/delete`, {
             method: 'DELETE',
             headers: {'Content-Type': 'application/json'},
         })

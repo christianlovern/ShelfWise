@@ -1,8 +1,6 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import bookshelfReducer from '../services/reducers/bookshelf_reducer';
 import BookshelfForm from './forms/BookshelfForm';
-import ShelfBox from './Shelf';
 import SideBar from './SideBar';
 
 
@@ -48,7 +46,7 @@ const Bookshelf = ({ user, appBookshelves,setShelfItems, hidden, setHidden }) =>
         }        
         fetchShelves();
         
-    }, [bookshelfId])
+    }, [bookshelfId, appBookshelves, user])
 
     const changeFocus = () => {
         setFocus(!focus)
@@ -112,11 +110,11 @@ const Bookshelf = ({ user, appBookshelves,setShelfItems, hidden, setHidden }) =>
                 if (shelfItems){
                     if(shelfItems.length !== 0)
                     return (
-                        <NavLink onClick={() => setShelfItems(shelfItems)} className="bookkshelf-view__shelf-link" to={`/shelf/${shelf.id}`}>
+                        <NavLink onClick={() => setShelfItems(shelfItems)} key = {shelf.id} className="bookkshelf-view__shelf-link" to={`/shelf/${shelf.id}`}>
                             <div className="bookshelf-view__bookshelf-shelves">
                                 {shelfItems.map((item) => {
                                     return( 
-                                        <div className="bookshelf-view__bookshelf-items">{item.name}</div>
+                                        <div key = {item.id} className="bookshelf-view__bookshelf-items">{item.name}</div>
                                     )
                                 })}
                             </div>

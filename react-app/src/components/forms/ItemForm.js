@@ -1,9 +1,7 @@
-import React, { useState, useReducer, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import { createItem } from '../../services/item';
 
 const ItemForm = (props) => {
-    const [submitted, setSubmitted] = useState(false)
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [favorite, setFavorite] = useState(false)
@@ -41,7 +39,7 @@ const ItemForm = (props) => {
 
         fetchCases();
     
-    }, [])
+    }, [props.user])
 
     const updateCatagories = (setType) =>(e) => {
         setType(e.target.value)
@@ -69,18 +67,18 @@ const ItemForm = (props) => {
         fetchShelves()
     }
     
-    const checktype = () => {
-        if(!type === "") {
-            return (
-                <select className="item__form__input" name="catagories" id="catagories" onChange={updateValue(setCatagory)}>
-                        <option key = {0} value={""}></option>
-                        {catagoryList.map((item) => {
-                                return(<option key = {item.id} value={item.name}>{item.name}</option>)
-                        })}
-                </select>
-            )
-        }
-    }
+    // const checktype = () => {
+    //     if(!type === "") {
+    //         return (
+    //             <select className="item__form__input" name="catagories" id="catagories" onChange={updateValue(setCatagory)}>
+    //                     <option key = {0} value={""}></option>
+    //                     {catagoryList.map((item) => {
+    //                             return(<option key = {item.id} value={item.name}>{item.name}</option>)
+    //                     })}
+    //             </select>
+    //         )
+    //     }
+    // }
 
     const updateValue = (setFunc) => (e) => {
         setFunc(e.target.value)
