@@ -1,23 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { authenticate } from '../services/auth';
 import LogoutButton from './auth/LogoutButton';
-import BookshelfForm from './forms/BookshelfForm'
 
 const NavBar = ({ setAuthenticated, authenticated, hidden, setHidden, bookshelves, setBookshelves }) => {
 
-
-  const ShowForm = () => {
-    if (!hidden){
-        return(
-            <div className="bookshelf__form-modal">
-                <BookshelfForm hidden={hidden} setHidden={setHidden} bookcases = {bookshelves} setBookcases={setBookshelves}/>
-            </div>
-        )
-    } else{
-        return null;
-    }
-  }
   const updateHidden = () => {
     return setHidden(!hidden)
   }
@@ -38,7 +24,7 @@ const NavBar = ({ setAuthenticated, authenticated, hidden, setHidden, bookshelve
       </>
       : 
       <div className='navbar__header'>
-          ShelfWise
+          Welcome to ShelfWise!
       </div>}
 
     </div>

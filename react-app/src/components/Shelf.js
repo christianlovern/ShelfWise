@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useReducer } from 'react';
-import { NavLink, BrowserRouter, Route } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import BookshelfForm from './forms/BookshelfForm';
 import SideBar from './SideBar';
 import CheckedBox from './Checked'
-import ItemView from './Item'
 
 
 const ShelfBox = ({ user, shelfItems, hidden, setHidden }) => {
@@ -14,7 +13,7 @@ const ShelfBox = ({ user, shelfItems, hidden, setHidden }) => {
     const [focus, setFocus] = useState(false) 
     const [searchItems, setSearchItems] = useState('')
     const [search, setSearch] = useState('')
-    const [checkedOut, setCheckedOut] = useState([])
+ 
     
     useEffect(() => {
         const fetchItems= async() => {
@@ -36,7 +35,7 @@ const ShelfBox = ({ user, shelfItems, hidden, setHidden }) => {
         }
         fetchCases();
         fetchItems();
-    },[])
+    },[currshelfId, user, shelfItems])
 
     const getChecked = () => {
         const checked = []

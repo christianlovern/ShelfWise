@@ -1,12 +1,9 @@
-import React, { useState, useReducer, useEffect } from 'react';
-import { Redirect, useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { editItem } from '../../services/item';
 
 const EditItemForm = (props) => {
-    const [submitted, setSubmitted] = useState(false)
-    const [name, setName] = useState('');
     const [description, setDescription] = useState('');
-    const [favorite, setFavorite] = useState(false)
     const [type, setType] = useState('');
     const [typeList, setTypeList] = useState([]);
     const [catagory, setCatagory]= useState('');
@@ -41,7 +38,7 @@ const EditItemForm = (props) => {
 
         fetchCases();
     
-    }, [])
+    }, [props.user])
 
     const updateCatagories = (setType) =>(e) => {
         setType(e.target.value)
@@ -69,18 +66,18 @@ const EditItemForm = (props) => {
         fetchShelves()
     }
     
-    const checktype = () => {
-        if(!type === "") {
-            return (
-                <select className="item__form__input" name="catagories" id="catagories" onChange={updateValue(setCatagory)}>
-                        <option key = {0} value={""}></option>
-                        {catagoryList.map((item) => {
-                                return(<option key = {item.id} value={item.name}>{item.name}</option>)
-                        })}
-                </select>
-            )
-        }
-    }
+    // const checktype = () => {
+    //     if(!type === "") {
+    //         return (
+    //             <select className="item__form__input" name="catagories" id="catagories" onChange={updateValue(setCatagory)}>
+    //                     <option key = {0} value={""}></option>
+    //                     {catagoryList.map((item) => {
+    //                             return(<option key = {item.id} value={item.name}>{item.name}</option>)
+    //                     })}
+    //             </select>
+    //         )
+    //     }
+    // }
 
     const updateValue = (setFunc) => (e) => {
         setFunc(e.target.value)

@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useReducer } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import SideBar from './SideBar';
 import RemoveModal from './RemoveModal'
 import EditModal from './EditModal'
@@ -44,7 +44,7 @@ const ItemView = ({ user, hidden, setHidden }) => {
         fetchItem();
         fetchCases();
         fetchInformation()
-    }, [currBookshelf, currShelfId])
+    }, [currBookshelf, currShelfId, currItemId, user])
 
     const getShelfNumber = () => {
         for(let i = 0; i < shelfList.length; i++){

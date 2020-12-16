@@ -8,14 +8,11 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import ShelfBox from "./components/Shelf"
 import { authenticate } from "./services/auth";
-import SideBar from "./components/SideBar";
 import Homepage from "./components/Homepage";
 import Bookshelf from "./components/Bookshelf";
 import ItemView from "./components/Item"
 
-// function Layout(props) {
-//   return <div id="layout">{props.children}</div>;
-// }
+
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);

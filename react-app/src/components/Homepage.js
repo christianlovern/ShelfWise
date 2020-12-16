@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect } from 'react';
 import SideBar from './SideBar';
 import CheckedBox from './Checked'
 import BookshelfForm from "./forms/BookshelfForm"
@@ -29,7 +29,7 @@ const Homepage = ({  user, setBookshelves, hidden, setHidden }) => {
 
         fetchChecked();
         fetchCases();
-    }, [])
+    }, [user, setBookshelves])
 
     const ShowForm = () => {
         if (!hidden){
